@@ -1,7 +1,15 @@
-import Drum from './Components/Drum'
+import Pad from "./Components/Drum/Pad";
+import { DrumStyle } from "./styles/stylesDrum";
+import Controls from "./Components/Drum/Controls";
+
 function App() {
+ 
+
   return (
-   <Drum/>
+    <DrumStyle id="drum-machine">
+      <Pad />
+      <Controls />
+    </DrumStyle>
   );
 }
 
