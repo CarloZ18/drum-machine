@@ -215,3 +215,21 @@ code {
   cursor: pointer;
   border-radius: 500px;
 }
+
+/*                                  RESPONSIVE                                   */
+
+@media only screen and (max-width: 600px) {
+  #drum-machine {
+    grid-template-columns: 1.5fr;
+    width: 300px;
+    height: 600px;
+  }
+  #keys {
+    margin-left: 14%;
+    margin-top: 20px;
+  }
+  .drum-pad {
+    height: 4em;
+    width: 4em;
+  }
+}
