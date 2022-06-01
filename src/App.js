@@ -1,24 +1,47 @@
 import Pad from "./Components/Drum/Pad";
-import { DrumStyle } from "./styles/stylesDrum";
+import { DrumStyle } from "./Components/ui/stylesDrum";
 import Controls from "./Components/Drum/Controls";
-import {useEffect, useRef,useState } from "react";
-import { bankOne } from "./data/dataBase";
+import { useEffect, useRef } from "react";
+import { bankOne} from "./data/dataBase";
+import { connect, useDispatch } from "react-redux";
+import { store } from "./store/store";
+import { bank1, bank2, powerOn, powerOff } from "./store/amount/actions";
 
 function App() {
+  const dispatch = useDispatch();
+  const state = store.getState();
+
+  console.log(state.power);
+
   //CONTROLS COMPONENT
-const [power,setPower]=useState(true);
-const displayRef = useRef();
 
-  const powerControl=()=>{
-power?setPower(false):setPower(true);
-displayRef.current.innerText = "";
-  }
+  const displayRef = useRef();
 
+  //POWER ON OR POWER OFF
+  const powerControl = () => {
+    if (state.power === true) {
+      dispatch(powerOff());
+      displayRef.current.innerText = "";
+    } else {
+      dispatch(powerOn());
+    }
+  };
+
+  //CHANGE VOLUME
   const handleVolume = (e) => {
-    identificadorAudio.current[0].volume = e.target.value;
-    console.log(refsAudio)
-  }
+    identificadorAudio.current.forEach((audio) => {
+      audio.volume = e.target.value;
+    });
+  };
 
+  //CHANGE BANK
+  const bankControl = () => {
+    if (state.bank === bankOne) {
+      dispatch(bank2());
+    } else {
+      dispatch(bank1());
+    }
+  };
 
   //PAD COMPONENT
   const identificadorAudio = useRef([]);
@@ -50,15 +73,14 @@ displayRef.current.innerText = "";
   };
 
   const playSound = (audioIndex, buttonIndex) => {
-if(power === true){
-    displayRef.current.innerText = buttonIndex.id;
-    const audioTag = audioIndex;
-    audioTag.currentTime = 0;
-    audioTag.play();
-    activatePad(buttonIndex);
-    setTimeout(() => activatePad(buttonIndex), 100);
-}
-    
+    if (state.power === true) {
+      displayRef.current.innerText = buttonIndex.id;
+      const audioTag = audioIndex;
+      audioTag.currentTime = 0;
+      audioTag.play();
+      activatePad(buttonIndex);
+      setTimeout(() => activatePad(buttonIndex), 100);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -95,23 +117,19 @@ if(power === true){
         break;
       default:
     }
-    console.log(numKey);
   };
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
-document.addEventListener("change", handleVolume);
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-
-    
   });
 
-  const mapBankOne = bankOne.map((bankOne, indexBank) => (
+  const mapBank = state.bank.map((bank, indexBank) => (
     <button
       className="drum-pad"
-      id={bankOne.id}
+      id={bank.id}
       ref={refsButton}
       onClick={() =>
         playSound(
@@ -120,22 +138,52 @@ document.addEventListener("change", handleVolume);
         )
       }
     >
-      {bankOne.keyTrigger}
+      {bank.keyTrigger}
       <audio
-        src={bankOne.url}
+        src={bank.url}
         className="clip"
         ref={refsAudio}
-        id={bankOne.keyTrigger}
+        id={bank.keyTrigger}
       />
     </button>
   ));
 
   return (
     <DrumStyle id="drum-machine">
-      <Pad mapBankOne={mapBankOne} />
-      <Controls displayRef={displayRef} powerControl={powerControl} handleVolume={handleVolume} />
+      <Pad mapBank={mapBank} />
+      <Controls
+        displayRef={displayRef}
+        powerControl={powerControl}
+        bankControl={bankControl}
+        handleVolume={handleVolume}
+      />
     </DrumStyle>
   );
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    bank: state.bank,
+    power: state.power,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    bank1: () => {
+      dispatch(bank1());
+    },
+    bank2: () => {
+      dispatch(bank2());
+    },
+    powerOn: () => {
+      dispatch(powerOn());
+    },
+    powerOff: () => {
+      dispatch(powerOff());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

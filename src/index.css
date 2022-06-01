@@ -65,13 +65,13 @@ code {
   background-color: #fff;
 }
 
-/*BUTTON POWER*/
+/*                                   BUTTON POWER                              */
 .flipswitch {
   position: relative;
   width: 60px;
 }
 
-.flipswitch input[type=checkbox] {
+.flipswitch input[type="checkbox"] {
   display: none;
 }
 .flipswitch-label {
@@ -86,7 +86,8 @@ code {
   margin-left: 0%;
   transition: margin 0.3s ease-in 0s;
 }
-.flipswitch-inner:before, .flipswitch-inner:after {
+.flipswitch-inner:before,
+.flipswitch-inner:after {
   float: left;
   width: 50%;
   height: 26px;
@@ -98,7 +99,7 @@ code {
   content: "";
   padding-left: 12px;
   background-color: #0c86d8;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .flipswitch-inner:after {
   content: "";
@@ -125,7 +126,71 @@ code {
   right: 32px;
   background: #0c86d8;
 }
-/*DISPLAY*/
+
+/*                                   BUTTON BANK                                */
+.flipswitch2 {
+  position: relative;
+  width: 60px;
+}
+
+.flipswitch2 input[type="checkbox"] {
+  display: none;
+}
+.flipswitch-label2 {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0px solid #999999;
+  border-radius: 50px;
+}
+.flipswitch-inner2 {
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.flipswitch-inner2:before,
+.flipswitch-inner2:after {
+  float: left;
+  width: 50%;
+  height: 26px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flipswitch-inner2:before {
+  content: "";
+  padding-left: 12px;
+  background-color: #0c86d8;
+  color: #ffffff;
+}
+.flipswitch-inner2:after {
+  content: "";
+  padding-right: 12px;
+  background-color: #fff;
+  color: #888888;
+}
+.flipswitch-switch2 {
+  width: 20px;
+  margin: 3px;
+  background: #0c86d8;
+  border: 0px solid #999999;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 32px;
+  transition: all 0.3s ease-in 0s;
+}
+.flipswitch-cb2:checked + .flipswitch-label2 .flipswitch-inner2 {
+  margin-left: 0px;
+}
+.flipswitch-cb2:checked + .flipswitch-label2 .flipswitch-switch2 {
+
+  right: 0px;
+  background: #ffffff;
+}
+
+/*                                  DISPLAY                                      */
 
 #display {
   display: flex;
@@ -133,7 +198,7 @@ code {
   justify-content: center;
   align-items: center;
   color: black;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 150px;
   height: 50px;
 }

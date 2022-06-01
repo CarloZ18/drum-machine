@@ -1,8 +1,8 @@
 
 
-function Pad({mapBankOne}) {
+function Pad({mapBank}) {
   return (
-      <div id="keys">{mapBankOne}</div>
+      <div id="keys">{mapBank}</div>
   );
 }
 

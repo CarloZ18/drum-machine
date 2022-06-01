@@ -1,21 +1,11 @@
-function Controls({ displayRef, powerControl,handleVolume }) {
+import {PowerButton,BankButton} from "../ui/switchButtons";
+
+function Controls({ displayRef, powerControl,bankControl,handleVolume }) {
   return (
     <div className="operator">
       <div className="control1">
         <p className="power">Power</p>
-        <div className="flipswitch">
-          <input
-          onClick={powerControl}
-            type="checkbox"
-            name="flipswitch"
-            className="flipswitch-cb"
-            id="fs"
-          />
-          <label className="flipswitch-label" htmlFor="fs">
-            <div className="flipswitch-inner"></div>
-            <div className="flipswitch-switch"></div>
-          </label>
-        </div>
+       <PowerButton Control={powerControl} />
       </div>
       <p id="display" ref={displayRef}></p>
       <p className="volume">Volume</p>
@@ -34,9 +24,7 @@ function Controls({ displayRef, powerControl,handleVolume }) {
       </div>
       <div className="control3">
         <p className="bank">Bank</p>
-        <div className="select">
-          <div className="inner"></div>
-        </div>
+      <BankButton Control={bankControl} />
       </div>
     </div>
   );
