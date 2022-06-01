@@ -13,7 +13,7 @@ function App() {
 
   console.log(state.power);
 
-  //CONTROLS COMPONENT
+  /*CONTROLS COMPONENT*/
 
   const displayRef = useRef();
 
@@ -43,7 +43,7 @@ function App() {
     }
   };
 
-  //PAD COMPONENT
+  /*PAD COMPONENT*/
   const identificadorAudio = useRef([]);
   identificadorAudio.current = [];
 
