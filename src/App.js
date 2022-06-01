@@ -50,18 +50,21 @@ function App() {
   const identificadorButton = useRef([]);
   identificadorButton.current = [];
 
+  //IDENTIFY EACH AUDIO
   const refsAudio = (el) => {
     if (el && !identificadorAudio.current.includes(el)) {
       identificadorAudio.current.push(el);
     }
   };
 
+  //IDENTIFY EACH BUTTON
   const refsButton = (el) => {
     if (el && !identificadorButton.current.includes(el)) {
       identificadorButton.current.push(el);
     }
   };
 
+  //CHANGE PAD COLOR
   const activatePad = (buttonIndex) => {
     if (buttonIndex.style.backgroundColor === "") {
       buttonIndex.style.backgroundColor = "#0c86d8";
@@ -72,6 +75,7 @@ function App() {
     }
   };
 
+  //SOUND ACTIVE
   const playSound = (audioIndex, buttonIndex) => {
     if (state.power === true) {
       displayRef.current.innerText = buttonIndex.id;
@@ -83,6 +87,7 @@ function App() {
     }
   };
 
+  //CLICK WHEN PAD IS PRESSED
   const handleKeyPress = (e) => {
     let numKey = e.keyCode;
     const idAudio = identificadorAudio.current;
