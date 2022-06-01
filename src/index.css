@@ -1,113 +1,217 @@
-
-
 body {
   margin: 0;
   display: flex;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.drum-pad{
+.drum-pad {
   position: relative;
   border: none;
-  float: left;
   height: 7em;
   width: 7em;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   border-radius: 10px;
   margin: 5px;
   box-shadow: 2px 2px 10px 0px #000000;
   font-size: medium;
 }
 
-.drum-pad:active{
-  cursor:pointer;
-  background-color:#0c86d8 ;
-  color: #fff;;
+.drum-pad:hover {
+  cursor: pointer;
 }
 
-.drum-pad:hover{
-  cursor:pointer;
+#keys {
+  margin-left: 10%;
 }
 
-#keys{
- margin-left: 10%;
-}
-
-.operator{
+.operator {
   color: #fff;
 }
 
-.power{
+.power {
   margin-bottom: 0;
   font-size: x-large;
   font-weight: 100px;
 }
 
-.bank{
+.bank {
   margin-bottom: 0;
   font-size: x-large;
   font-weight: 100px;
 }
 
-.volume{
+.volume {
   margin-bottom: 0;
   font-size: x-large;
   font-weight: 100px;
 }
 
-.select{
+.select {
   margin: auto;
   width: 50px;
   height: 20px;
   padding: 1px;
   border-radius: 500px;
-  background-color:#fff;
-}
-
-.inner{
-  cursor: pointer;
-  background-color: #0c86d8;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-}
-
-#display{
   background-color: #fff;
+}
+
+/*                                   BUTTON POWER                              */
+.flipswitch {
+  position: relative;
+  width: 60px;
+}
+
+.flipswitch input[type="checkbox"] {
+  display: none;
+}
+.flipswitch-label {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0px solid #999999;
+  border-radius: 50px;
+}
+.flipswitch-inner {
+  width: 200%;
+  margin-left: 0%;
+  transition: margin 0.3s ease-in 0s;
+}
+.flipswitch-inner:before,
+.flipswitch-inner:after {
+  float: left;
+  width: 50%;
+  height: 26px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flipswitch-inner:before {
+  content: "";
+  padding-left: 12px;
+  background-color: #0c86d8;
+  color: #ffffff;
+}
+.flipswitch-inner:after {
+  content: "";
+  padding-right: 12px;
+  background-color: #fff;
+  color: #888888;
+}
+.flipswitch-switch {
+  width: 20px;
+  margin: 3px;
+  background: #fff;
+  border: 0px solid #999999;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0px;
+  transition: all 0.3s ease-in 0s;
+}
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+  margin-left: -60px;
+}
+.flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+  right: 32px;
+  background: #0c86d8;
+}
+
+/*                                   BUTTON BANK                                */
+.flipswitch2 {
+  position: relative;
+  width: 60px;
+}
+
+.flipswitch2 input[type="checkbox"] {
+  display: none;
+}
+.flipswitch-label2 {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0px solid #999999;
+  border-radius: 50px;
+}
+.flipswitch-inner2 {
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+}
+.flipswitch-inner2:before,
+.flipswitch-inner2:after {
+  float: left;
+  width: 50%;
+  height: 26px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flipswitch-inner2:before {
+  content: "";
+  padding-left: 12px;
+  background-color: #0c86d8;
+  color: #ffffff;
+}
+.flipswitch-inner2:after {
+  content: "";
+  padding-right: 12px;
+  background-color: #fff;
+  color: #888888;
+}
+.flipswitch-switch2 {
+  width: 20px;
+  margin: 3px;
+  background: #0c86d8;
+  border: 0px solid #999999;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 32px;
+  transition: all 0.3s ease-in 0s;
+}
+.flipswitch-cb2:checked + .flipswitch-label2 .flipswitch-inner2 {
+  margin-left: 0px;
+}
+.flipswitch-cb2:checked + .flipswitch-label2 .flipswitch-switch2 {
+
+  right: 0px;
+  background: #ffffff;
+}
+
+/*                                  DISPLAY                                      */
+
+#display {
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 150px;
   height: 50px;
 }
 
-.operator{
+.operator {
   display: grid;
   justify-items: center;
   padding-bottom: 40px;
-
 }
 
-[type=range] {
+[type="range"] {
   width: 200px;
   outline: none;
   cursor: pointer;
   border-radius: 500px;
 }
-
-
-
-
-
-
-
- 
-
-/*#C8BCA2*/
